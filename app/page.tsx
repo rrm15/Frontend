@@ -1,11 +1,11 @@
-import Hero from '@/components/Hero';
-import Features from '@/components/Features';
-import HowItWorks from '@/components/HowItWorks';
-import SuccessStories from '@/components/SuccessStories';
-import Benefits from '@/components/Benefits';
-import CTA from '@/components/CTA';
-import Footer from '@/components/Footer';
-import Faqs from '@/components/Faqs';
+import Hero from '@/components/home/Hero';
+import Features from '@/components/home/Features';
+import HowItWorks from '@/components/home/HowItWorks';
+import SuccessStories from '@/components/home/SuccessStories';
+import Benefits from '@/components/home/Benefits';
+import CTA from '@/components/home/CTA';
+import Footer from '@/components/home/Footer';
+import Faqs from '@/components/home/Faqs';
 export default function Home() {
   return (
     <main>
