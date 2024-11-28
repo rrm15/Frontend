@@ -1,19 +1,16 @@
-// app/layout.tsx
 import './globals.css';
 import type { Metadata } from 'next';
 import { Space_Grotesk } from 'next/font/google';
 import { ThemeProvider } from '@/components/theme/theme-provider';
 import Navbar from '@/components/navigation/Navbar';
-import { Analytics } from "@vercel/analytics/react";
+
+import { Analytics } from "@vercel/analytics/react"; // Import Analytics component
 
 const spaceGrotesk = Space_Grotesk({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
   title: 'Wemace - Empowering SHGs through Blockchain',
   description: 'A decentralized platform empowering Self Help Groups in India through blockchain technology, AI, and DeFi.',
-  icons: {
-    icon: '/logo.ico',
-  },
 };
 
 export default function RootLayout({
@@ -33,7 +30,7 @@ export default function RootLayout({
           <Navbar />
           {children}
         </ThemeProvider>
-        <Analytics />
+        <Analytics /> {/* Add Analytics here */}
       </body>
     </html>
   );
