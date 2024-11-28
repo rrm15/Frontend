@@ -5,7 +5,7 @@ import SuccessStories from '@/components/SuccessStories';
 import Benefits from '@/components/Benefits';
 import CTA from '@/components/CTA';
 import Footer from '@/components/Footer';
-
+import Faqs from '@/components/Faqs';
 export default function Home() {
   return (
     <main>
@@ -15,6 +15,7 @@ export default function Home() {
       <SuccessStories />
       <Benefits />
       <CTA />
+      <Faqs />
       <Footer />
     </main>
   );
