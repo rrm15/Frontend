@@ -4,6 +4,8 @@ import { Space_Grotesk } from 'next/font/google';
 import { ThemeProvider } from '@/components/theme/theme-provider';
 import Navbar from '@/components/navigation/Navbar';
 
+import { Analytics } from "@vercel/analytics/react"; // Import Analytics component
+
 const spaceGrotesk = Space_Grotesk({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
@@ -28,6 +30,7 @@ export default function RootLayout({
           <Navbar />
           {children}
         </ThemeProvider>
+        <Analytics /> {/* Add Analytics here */}
       </body>
     </html>
   );
