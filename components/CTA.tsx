@@ -11,7 +11,7 @@ export default function CTA() {
           Join the <span className="gradient-text">Revolution</span>
         </h2>
         <p className="text-xl mb-8 text-gray-600">
-          Be part of India's largest blockchain-powered SHG network
+          Be part of India&apos;s largest blockchain-powered SHG network
         </p>
         <Button size="lg" className="bg-[#8A2BE2] hover:bg-[#7B27CC]">
           Get Started Now <ArrowRight className="ml-2" />
