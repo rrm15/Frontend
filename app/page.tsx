@@ -6,7 +6,7 @@ import Benefits from '@/components/home/Benefits';
 import CTA from '@/components/home/CTA';
 import Footer from '@/components/home/Footer';
 import Faqs from '@/components/home/Faqs';
-import SupportContact from '@/components/home/SupportContact';
+
 export default function Home() {
   return (
     <main>
@@ -17,7 +17,6 @@ export default function Home() {
       <Benefits />
       <CTA />
       <Faqs />
-      <SupportContact />
       <Footer />
     </main>
   );

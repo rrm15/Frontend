@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { ChevronDown, ChevronUp } from 'lucide-react';
 
 interface FAQItem {
@@ -40,38 +40,43 @@ const Faqs: React.FC = () => {
 
   return (
     <section className="hero-gradient py-16 px-4">
-    <div className="max-w-4xl mx-auto">
-      <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 gradient-text-white dark:gradient-text-dark">
-        Frequently Asked <span className="gradient-text">Questions</span>
-      </h2>
-      <div className="space-y-4">
-        {faqData.map((faq, index) => (
-        <div 
-          key={index} 
-          className="border border-gray-200 rounded-lg bg-white shadow-sm gradient-text-white dark:bg-gray-800 dark:border-gray-700"
-        >
-          <button 
-            onClick={() => toggleFAQ(index)}
-            className="w-full flex justify-between items-center p-4 text-left focus:outline-none"
-          >
-            <span className="text-base md:text-lg font-semibold text-gray-800 dark:text-gray-200">
-            {faq.question}
-            </span>
-            {openIndex === index ? (
-            <ChevronUp className="text-blue-600 dark:text-blue-400" />
-            ) : (
-            <ChevronDown className="text-gray-500 dark:text-gray-400" />
-            )}
-          </button>
-          {openIndex === index && (
-            <div className="p-4 pt-0 text-gray-600 dark:text-gray-300 text-sm md:text-base">
-            {faq.answer}
+      <div className="max-w-4xl mx-auto">
+        <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 gradient-text-white dark:gradient-text-dark">
+          Frequently Asked <span className="gradient-text">Questions</span>
+        </h2>
+        <div className="space-y-4">
+          {faqData.map((faq, index) => (
+            <div
+              key={index}
+              className="border border-gray-200 rounded-lg bg-white shadow-sm gradient-text-white dark:bg-gray-800 dark:border-gray-700"
+            >
+              <button
+                onClick={() => toggleFAQ(index)}
+                className="w-full flex justify-between items-center p-4 text-left focus:outline-none"
+              >
+                <span className="text-base md:text-lg font-semibold text-gray-800 dark:text-gray-200">
+                  {faq.question}
+                </span>
+                {openIndex === index ? (
+                  <ChevronUp className="text-blue-600 dark:text-blue-400" />
+                ) : (
+                  <ChevronDown className="text-gray-500 dark:text-gray-400" />
+                )}
+              </button>
+              <div
+                className={`overflow-hidden transition-all duration-300 ease-in-out`}
+                style={{
+                  maxHeight: openIndex === index ? '500px' : '0',
+                }}
+              >
+                <div className="p-4 pt-0 text-gray-600 dark:text-gray-300 text-sm md:text-base">
+                  {faq.answer}
+                </div>
+              </div>
             </div>
-          )}
+          ))}
         </div>
-        ))}
       </div>
-    </div>
     </section>
   );
 };
