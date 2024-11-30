@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useTransition } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
@@ -24,20 +24,14 @@ import { FormError } from "../form/FormError";
 import { FormSuccess } from "../form/FormSuccess";
 import { FormWarning } from "../form/FormWarning";
 
-const formSchema = z
-  .object({
-    name: z.string().min(2, "Name must be at least 2 characters"),
-    email: z.string().email("Invalid email address"),
-    password: z.string().min(8, "Password must be at least 8 characters"),
-    confirmPassword: z.string(),
-  })
-  .refine((data) => data.password === data.confirmPassword, {
-    message: "Passwords don't match",
-    path: ["confirmPassword"],
-  });
+import { SignupSchema } from "@/schemas";
+import { signup } from "@/actions/signup";
+
+import bcrypt from "bcrypt";
 
 export const SignupForm: React.FC = () => {
   const [isLoading, setIsLoading] = useState(false);
+  const [isPending, startTransition] = useTransition();
   const [feedback, setFeedback] = useState<{
     type: "success" | "error" | "warning";
     message: string | null;
@@ -46,8 +40,10 @@ export const SignupForm: React.FC = () => {
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const router = useRouter();
 
-  const form = useForm<z.infer<typeof formSchema>>({
-    resolver: zodResolver(formSchema),
+  type SignupSchemaType = z.infer<typeof SignupSchema>;
+
+  const form = useForm<SignupSchemaType>({
+    resolver: zodResolver(SignupSchema),
     defaultValues: {
       name: "",
       email: "",
@@ -55,6 +51,7 @@ export const SignupForm: React.FC = () => {
       confirmPassword: "",
     },
   });
+  
 
   const preventPaste = (e: React.ClipboardEvent<HTMLInputElement>) => {
     e.preventDefault();
@@ -64,25 +61,19 @@ export const SignupForm: React.FC = () => {
     });
   };
 
-  async function onSubmit(values: z.infer<typeof formSchema>) {
+  async function onSubmit(values: SignupSchemaType) {
+
     setIsLoading(true);
-    try {
-      // Simulate API request
-      await new Promise((resolve) => setTimeout(resolve, 1000));
-      setFeedback({
-        type: "success",
-        message: "Account created successfully. Redirecting...",
+    startTransition(() => {
+      signup(values).then((result) => {
+        if (result.error) {
+          setFeedback({ type: "error", message: result.error });
+        } else {
+          setFeedback({ type: "success", message: "Email Verification Sent. Please check your inbox." });
+        }
       });
-      setTimeout(() => router.push("/auth/login"), 1500);
-    } catch (error) {
-      setFeedback({
-        type: "error",
-        message: "Something went wrong while creating your account",
-      });
-    } finally {
       setIsLoading(false);
-    }
-  }
+    });}
 
   const handleSocialSignIn = async (provider: "google" | "github") => {
     try {
@@ -213,4 +204,4 @@ export const SignupForm: React.FC = () => {
       </div>
     </AuthCard>
   );
-};
+  };

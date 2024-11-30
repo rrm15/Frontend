@@ -1,29 +1,25 @@
-  "use client";
+"use client";
+import React, { useState, useTransition } from "react";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import * as z from "zod";
+import { signIn } from "next-auth/react";
+import { useRouter } from "next/navigation";
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
+import { Form, FormField, FormItem, FormLabel, FormControl, FormMessage } from "@/components/ui/form";
+import { Input } from "@/components/ui/input";
+import { PasswordInput } from "./PasswordInput";
+import { AuthCard } from "./AuthCard";
+import { SignInOption } from "./SignInOption";
+import { FormError } from "../form/FormError";
+import { FormWarning } from "../form/FormWarning";
+import { FormSuccess } from "../form/FormSuccess";
+import { login } from "@/actions/login";
 
-  import React, { useState, useTransition } from "react";
-  import { useForm } from "react-hook-form";
-  import { zodResolver } from "@hookform/resolvers/zod";
-  import * as z from "zod";
-  import { signIn } from "next-auth/react";
-  import { useRouter } from "next/navigation";
-  import Link from "next/link";
-  import { Button } from "@/components/ui/button";
-  import { Form, FormField, FormItem, FormLabel, FormControl, FormMessage } from "@/components/ui/form";
-  import { Input } from "@/components/ui/input";
-  import { PasswordInput } from "./PasswordInput";
-  import { AuthCard } from "./AuthCard";
-  import { SignInOption } from "./SignInOption";
-  import { FormError } from "../form/FormError";
-  import { FormWarning } from "../form/FormWarning";
-  import { FormSuccess } from "../form/FormSuccess";
-  import { login } from "@/actions/login";
+import { LoginSchema } from "@/schemas";
 
-  const formSchema = z.object({
-    email: z.string().email("Invalid email address"),
-    password: z.string().min(8, "Password must be at least 8 characters"),
-  });
-
-  export const LoginForm: React.FC = () => {
+export const LoginForm: React.FC = () => {
     const [isLoading, setIsLoading] = useState(false);
     const [isPending, startTransition] = useTransition();
     const [feedback, setFeedback] = useState<{
@@ -33,15 +29,17 @@
     const [showPassword, setShowPassword] = useState(false);
     const router = useRouter();
 
-    const form = useForm<z.infer<typeof formSchema>>({
-      resolver: zodResolver(formSchema),
+    type LoginSchemaType = z.infer<typeof LoginSchema>;
+
+    const form = useForm<LoginSchemaType>({
+      resolver: zodResolver(LoginSchema),
       defaultValues: {
         email: "",
         password: "",
       },
     });
 
-    async function onSubmit(values: z.infer<typeof formSchema>) {
+    async function onSubmit(values: LoginSchemaType) {
 
       setIsLoading(true);
       startTransition(() => {
@@ -54,25 +52,6 @@
         });
         setIsLoading(false);
       });
-
-      // try {
-      //   const result = await signIn("credentials", {
-      //     email: values.email,
-      //     password: values.password,
-      //     redirect: false,
-      //   });
-
-      //   if (result?.error) {
-      //     setFeedback({ type: "error", message: "Invalid credentials" });
-      //   } else {
-      //     setFeedback({ type: "success", message: "Login successful! Redirecting..." });
-      //     setTimeout(() => router.push("/dashboard"), 1500);
-      //   }
-      // } catch (error) {
-      //   setFeedback({ type: "error", message: "Something went wrong. Please try again." });
-      // } finally {
-      //   setIsLoading(false);
-      // }
     }
 
     const handleGoogleSignIn = async () => {
