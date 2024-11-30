@@ -1,24 +1,36 @@
 "use client";
 
-import { ArrowRight, Shield, Users, Wallet } from 'lucide-react';
-import { Button } from '@/components/ui/button';
+import { ArrowRight, Shield, Users, Wallet } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { useRouter } from "next/navigation";
 
-export default function Hero() {
+interface HeroProps {
+  onLearnMoreClick: () => void; // Explicit type for the prop
+}
+
+export default function Hero({ onLearnMoreClick }: HeroProps) {
+  const router = useRouter();
+
   return (
     <div className="hero-gradient min-h-screen flex items-center justify-center px-4 py-20">
       <div className="max-w-7xl mx-auto text-center">
         <h1 className="text-5xl md:text-7xl font-bold mb-6">
           <span className="gradient-text">Empowering Women</span>
-          <br />Through Blockchain Technology
+          <br />
+          Through Blockchain Technology
         </h1>
         <p className="text-xl md:text-2xl mb-8 max-w-3xl mx-auto text-gray-600">
           Connecting Self Help Groups to the future of finance through decentralized solutions
         </p>
         <div className="flex flex-wrap gap-4 justify-center mb-16">
-          <Button size="lg" className="bg-[#8A2BE2] hover:bg-[#7B27CC]">
+          <Button
+            onClick={() => router.push("/auth/signup")}
+            size="lg"
+            className="bg-[#8A2BE2] hover:bg-[#7B27CC]"
+          >
             Get Started <ArrowRight className="ml-2" />
           </Button>
-          <Button size="lg" variant="outline">
+          <Button size="lg" variant="outline" onClick={onLearnMoreClick}>
             Learn More
           </Button>
         </div>

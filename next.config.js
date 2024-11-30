@@ -1,6 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  output: 'export',
+  experimental: {
+    serverActions: true, // Enable server actions
+  },
   eslint: {
     ignoreDuringBuilds: true,
   },

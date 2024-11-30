@@ -3,7 +3,7 @@ import './globals.css';
 import type { Metadata } from 'next';
 import { Space_Grotesk } from 'next/font/google';
 import { ThemeProvider } from '@/components/theme/theme-provider';
-import Navbar from '@/components/navigation/Navbar';
+import { ToastProvider, ToastViewport } from '../components/ui/toast';
 import { Analytics } from "@vercel/analytics/react";
 
 const spaceGrotesk = Space_Grotesk({ subsets: ['latin'] });
@@ -30,8 +30,10 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <Navbar />
+          <ToastProvider>
+          <ToastViewport />
           {children}
+          </ToastProvider>
         </ThemeProvider>
         <Analytics />
       </body>

@@ -48,14 +48,14 @@ export default function Navbar() {
               variant="ghost"
               className="h-10 px-4 tracking-widest brand-text"
             >
-              <Link href="/auth">Login In</Link>
+              <Link href="/auth/login">Login In</Link>
             </Button>
             <Button
               asChild
               variant="ghost"
               className="h-10 px-4 tracking-widest brand-text"
             >
-              <Link href="/auth">Sign Up</Link>
+              <Link href="/auth/signup">Sign Up</Link>
             </Button>
           </div>
           <MobileNav />

@@ -118,3 +118,11 @@
 .dark .feature-card:hover {
   border-color: var(--primary-mid);
 }
+
+@media (max-width: 768px) {
+  .toast-viewport {
+    width: 95%;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}
