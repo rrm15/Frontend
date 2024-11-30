@@ -1,6 +1,6 @@
 "use client"
 
-import { useRef } from "react";
+import { useRef, createRef } from "react";
 import Navbar from "@/components/navigation/Navbar";
 import Hero from "@/components/home/Hero";
 import Features from "@/components/home/Features";
@@ -11,28 +11,61 @@ import CTA from "@/components/home/CTA";
 import Footer from "@/components/home/Footer";
 import Faqs from "@/components/home/Faqs";
 
+const sections = [
+  { component: Features, name: 'features' },
+  { component: HowItWorks, name: 'howItWorks' },
+  { component: SuccessStories, name: 'successStories' },
+  { component: Benefits, name: 'benefits' },
+  { component: CTA, name: 'cta' },
+  { component: Faqs, name: 'faqs' }
+];
 
 export default function Home() {
-  const howItWorksRef = useRef<HTMLDivElement>(null); // Explicitly type the ref
+  const sectionRefs = useRef(
+    sections.reduce((acc, section) => {
+      acc[section.name] = createRef<HTMLDivElement>();
+      return acc;
+    }, {} as Record<string, React.RefObject<HTMLDivElement>>)
+  ).current;
 
-  const scrollToHowItWorks = () => {
-    if (howItWorksRef.current) {
-      howItWorksRef.current.scrollIntoView({ behavior: "smooth" }); // TypeScript-safe usage
+  const scrollToSection = (sectionName: string) => {
+    const ref = sectionRefs[sectionName];
+    if (ref?.current) {
+      ref.current.scrollIntoView({ behavior: "smooth" });
     }
   };
+
+  const scrollToHowItWorks = () => scrollToSection('howItWorks');
 
   return (
     <main>
       <Navbar />
       <Hero onLearnMoreClick={scrollToHowItWorks} />
-      <Features />
-      <div ref={howItWorksRef}>
+      
+      <div ref={sectionRefs.features}>
+        <Features />
+      </div>
+      
+      <div ref={sectionRefs.howItWorks}>
         <HowItWorks />
       </div>
-      <SuccessStories />
-      <Benefits />
-      <CTA />
-      <Faqs />
+      
+      <div ref={sectionRefs.successStories}>
+        <SuccessStories />
+      </div>
+      
+      <div ref={sectionRefs.benefits}>
+        <Benefits />
+      </div>
+      
+      <div ref={sectionRefs.cta}>
+        <CTA />
+      </div>
+      
+      <div ref={sectionRefs.faqs}>
+        <Faqs />
+      </div>
+      
       <Footer />
     </main>
   );

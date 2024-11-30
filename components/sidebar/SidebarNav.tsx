@@ -58,6 +58,12 @@ const sidebarNavItems = [
 export function SidebarNav() {
   const pathname = usePathname();
 
+  const handleSignOut = async () => {
+    await signOut({ 
+      callbackUrl: "/auth/login" 
+    });
+  };
+
   return (
     <div className="relative">
       <ScrollArea className="h-[calc(100vh-4rem)] pb-10">
@@ -82,7 +88,7 @@ export function SidebarNav() {
         <Button
           variant="ghost"
           className="w-full justify-start gap-2 text-destructive hover:text-destructive"
-          onClick={() => signOut()}
+          onClick={handleSignOut}
         >
           <LogOut className="h-4 w-4" />
           Logout

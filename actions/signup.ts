@@ -2,7 +2,7 @@
 
 import { z } from "zod";
 import { SignupSchema } from "@/schemas";
-import bcrypt from "bcrypt";
+import bcrypt from "bcryptjs";
 import { db } from "@/lib/db";
 import { getuserByEmail } from "@/data/user";
 

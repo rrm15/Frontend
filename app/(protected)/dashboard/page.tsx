@@ -1,4 +1,4 @@
-"use client";
+import { auth } from "@/auth";
 
 import { OverviewStats } from "@/components/dashboard/OverviewStats";
 import { TransactionChart } from "@/components/dashboard/TransactionChart";
@@ -9,14 +9,16 @@ import { ProfileStatus } from "@/components/dashboard/ProfileStatus";
 import { SidebarShell } from "@/components/sidebar/SidebarShell";
 import { SideBarHeader } from "@/components/sidebar/SidebarHeader";
 
-export default function DashboardPage() {
+export default async function DashboardPage() {
+
+  const session = await auth();
   
   return (
     <SidebarShell>
       <SideBarHeader 
         heading="Hello, Parvathi"
         text="Welcome to your Wemace dashboard"
-      />
+      />  
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
         <OverviewStats />
       </div>
@@ -27,7 +29,7 @@ export default function DashboardPage() {
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 mt-6">
         <QuickActions />
         <NotificationsCenter />
-        {/* <ProfileStatus /> */}
+        <ProfileStatus />
       </div>
     </SidebarShell>
   );

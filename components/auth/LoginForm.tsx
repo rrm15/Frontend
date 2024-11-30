@@ -40,7 +40,7 @@ export const LoginForm: React.FC = () => {
     });
 
     async function onSubmit(values: LoginSchemaType) {
-
+      setFeedback({ type: "warning", message: "Validating your credentials..." });
       setIsLoading(true);
       startTransition(() => {
         login(values).then((result) => {

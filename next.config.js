@@ -1,12 +1,16 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   experimental: {
-    serverActions: true, // Enable server actions
+    serverActions: {
+      allowedOrigins: ['localhost:3000'], // Specify allowed origins
+    },
   },
   eslint: {
     ignoreDuringBuilds: true,
   },
-  images: { unoptimized: true },
+  images: { 
+    unoptimized: true 
+  },
 };
 
 module.exports = nextConfig;

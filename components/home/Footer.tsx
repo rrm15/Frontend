@@ -1,6 +1,13 @@
 import { Facebook, Twitter, Instagram, Linkedin } from 'lucide-react';
+import { useState, useEffect } from 'react';
 
 export default function Footer() {
+  const [currentYear, setCurrentYear] = useState(new Date().getFullYear());
+
+  useEffect(() => {
+    setCurrentYear(new Date().getFullYear());
+  }, []);
+
   const links = {
     Product: ['Features', 'Security', 'Roadmap', 'Documentation'],
     Company: ['About', 'Blog', 'Careers', 'Press'],
@@ -19,7 +26,11 @@ export default function Footer() {
             </p>
             <div className="flex space-x-4">
               {[Facebook, Twitter, Instagram, Linkedin].map((Icon, i) => (
-                <a key={i} href="#" className="hover:text-[#FF1493] transition-colors">
+                <a 
+                  key={i} 
+                  href="#" 
+                  className="hover:text-[#FF1493] transition-colors"
+                >
                   <Icon className="w-6 h-6" />
                 </a>
               ))}
@@ -31,7 +42,10 @@ export default function Footer() {
               <ul className="space-y-2">
                 {items.map((item) => (
                   <li key={item}>
-                    <a href="#" className="text-gray-400 hover:text-white transition-colors">
+                    <a 
+                      href="#" 
+                      className="text-gray-400 hover:text-white transition-colors"
+                    >
                       {item}
                     </a>
                   </li>
@@ -41,7 +55,9 @@ export default function Footer() {
           ))}
         </div>
         <div className="mt-12 pt-8 border-t border-gray-800 text-center text-gray-400">
-          <p>&copy; {new Date().getFullYear()} Wemace. All rights reserved.</p>
+          <p suppressHydrationWarning>
+            &copy; {currentYear} Wemace. All rights reserved.
+          </p>
         </div>
       </div>
     </footer>
