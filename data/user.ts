@@ -3,6 +3,9 @@ import {db } from "@/lib/db";
 export const getuserByEmail = async (email: string) => {
     try {
       console.log("Searching for user with email:", email);
+      if (!process.env.DATABASE_URL) {
+        throw new Error('DATABASE_URL is not set');
+      }
       const user = await db.user.findUnique({
         where: { email }
       });
