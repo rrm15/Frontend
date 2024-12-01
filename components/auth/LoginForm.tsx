@@ -48,6 +48,9 @@ export const LoginForm: React.FC = () => {
             setFeedback({ type: "error", message: result.error });
           } else {
             setFeedback({ type: "success", message: "Logged in successfully" });
+            if (result.redirect) {
+              router.push(result.redirect);
+            }
           }
         });
         setIsLoading(false);
