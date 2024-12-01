@@ -27,6 +27,7 @@ export const login = async (values: LoginSchemaType) => {
       const result = await signIn("credentials", { 
         email, 
         password, 
+        redirect: false
         // redirectTo: DEFAULT_LOGIN_REDIRECT 
       });
   
