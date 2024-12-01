@@ -7,23 +7,42 @@ import { AuthError } from "next-auth";
 import { signIn } from "@/auth";
 import {DEFAULT_LOGIN_REDIRECT} from "@/routes";
 
+import {generateVerificationToken} from "@/lib/tokens";
+import { getuserByEmail } from "@/data/user";
+
+import {sendVerificationEmail} from "@/lib/mail";
+
 type LoginSchemaType = z.infer<typeof LoginSchema>;
 
 export const login = async (values: LoginSchemaType) => {
-    console.log("Login attempt with values:", values);
 
     const validatedFields = LoginSchema.safeParse(values);
   
     if (!validatedFields.success) {
-      console.error("Validation failed:", validatedFields.error);
       return {
         error: "The credentials you provided were not valid.",
       };
     }
   
     const { email, password } = validatedFields.data;
+
+    const existingUser = await getuserByEmail(email);
+
+    if (!existingUser || !existingUser.password || !existingUser.email) {  
+        return {
+            error: "The credentials you provided were not valid.",
+          };
+     }
+
+    if (!existingUser.emailVerified) {
+        const verificationToken = await generateVerificationToken(existingUser.email);
+        await sendVerificationEmail(existingUser.email, verificationToken.token);
+        return {
+            success: "Confirmation email was sent to your email.",
+        };
+    }
+
     try {
-      console.log("Attempting to sign in with email:", email);
       const result = await signIn("credentials", { 
         email, 
         password, 
@@ -31,15 +50,13 @@ export const login = async (values: LoginSchemaType) => {
         // redirectTo: DEFAULT_LOGIN_REDIRECT 
       });
   
-      console.log("Sign in result:", result);
   
       return { 
-        success: "The credentials you provided were not valid.", 
+        success: "Authenticated, Login successful!",
         redirect: DEFAULT_LOGIN_REDIRECT 
       };
     }
     catch(error) {
-      console.error("Login error:", error);
       if(error instanceof AuthError) {
         switch(error.type) {
           case "CredentialsSignin":

@@ -48,6 +48,23 @@ npm run dev
 ```
 This will launch the application in your default web browser. You can now make changes to the code and see the updates in real-time.
 
+## Envirment Variables
+
+The following environment variables are required to run the application:
+
+- `NEXT_PUBLIC_BACKEND_URL`: The URL of the backend server.
+- `NEXT_PUBLIC_GOOGLE_CLIENT_ID`: The client ID for Google OAuth.
+- `NEXT_PUBLIC_GOOGLE_CLIENT_SECRET`: The client secret for Google OAuth.
+- `NEXT_PUBLIC_GITHUB_CLIENT_ID`: The client ID for GitHub OAuth.
+- `NEXT_PUBLIC_GITHUB_CLIENT_SECRET`: The client secret for GitHub OAuth.
+- `NEXT_PUBLIC_RESEND_API_KEY`: The API key for Resend.
+
+You can find these values in the `.env` file in the root directory of the project.
+
+## Production Deployment
+
+Change the Link in Mail.ts to the production link
+
 ## Contributing
 
 We welcome contributions to the Wemace Frontend project! If you have any ideas, suggestions, or bug reports, please open an issue or submit a pull request. Make sure to follow our [contributing guidelines](CONTRIBUTING.md).

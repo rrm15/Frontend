@@ -27,8 +27,6 @@ import { FormWarning } from "../form/FormWarning";
 import { SignupSchema } from "@/schemas";
 import { signup } from "@/actions/signup";
 
-import bcrypt from "bcrypt";
-
 export const SignupForm: React.FC = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [isPending, startTransition] = useTransition();

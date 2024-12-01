@@ -5,6 +5,8 @@ import { SignupSchema } from "@/schemas";
 import bcrypt from "bcryptjs";
 import { db } from "@/lib/db";
 import { getuserByEmail } from "@/data/user";
+import {generateVerificationToken} from "@/lib/tokens";
+import {sendVerificationEmail} from "@/lib/mail";
 
 type SignupSchemaType = z.infer<typeof SignupSchema>;
 
@@ -43,7 +45,9 @@ export const signup = async (values: SignupSchemaType) => {
     },
   });
 
-  // TODO: Send verification email
+  const verificationToken = await generateVerificationToken(email);
+  await sendVerificationEmail(email, verificationToken.token);
+
 
   return { success: "Signup successful! Verify your email to continue." };
 
