@@ -75,17 +75,6 @@ export const SignupForm: React.FC = () => {
       setIsLoading(false);
     });}
 
-  const handleSocialSignIn = async (provider: "google" | "github") => {
-    try {
-      await signIn(provider, { callbackUrl: "/dashboard" });
-    } catch (error) {
-      setFeedback({
-        type: "error",
-        message: `${provider.charAt(0).toUpperCase() + provider.slice(1)} sign-in failed`,
-      });
-    }
-  };
-
   return (
     <AuthCard title="Sign Up" description="Join our community of Self Help Groups">
       <Form {...form}>
@@ -186,12 +175,10 @@ export const SignupForm: React.FC = () => {
       <div className="space-y-2">
         <SignInOption
           provider="google"
-          onClick={() => handleSocialSignIn("google")}
           variant="outline"
         />
         <SignInOption
           provider="github"
-          onClick={() => handleSocialSignIn("github")}
           variant="outline"
         />
       </div>

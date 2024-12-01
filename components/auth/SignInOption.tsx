@@ -1,10 +1,11 @@
 import React from 'react';
 import Image from 'next/image';
 import { Button } from "@/components/ui/button";
+import { signIn } from "next-auth/react";
+import { DEFAULT_LOGIN_REDIRECT } from '@/routes';
 
 interface SignInOptionProps {
-  provider: 'google' | 'github' | 'microsoft';
-  onClick: () => void;
+  provider: 'google' | 'github';
   className?: string;
   variant?: 'default' | 'outline';
 }
@@ -30,21 +31,10 @@ const providerConfig = {
         border: 'border border-gray-300 dark:border-gray-600'
       }
   },
-  microsoft: {
-    logo: '/icons/microsoft-logo.svg',
-    text: 'Continue with Microsoft',
-    bgColor: {
-      default: 'bg-white hover:bg-gray-50',
-      dark: 'dark:bg-gray-800 dark:hover:bg-gray-700',
-      text: 'text-gray-700 dark:text-gray-200',
-      border: 'border border-gray-300 dark:border-gray-600'
-    }
-  }
 };
 
 export const SignInOption: React.FC<SignInOptionProps> = ({ 
-  provider, 
-  onClick, 
+  provider,  
   className = '',
   variant = 'default'
 }) => {
@@ -60,10 +50,15 @@ export const SignInOption: React.FC<SignInOptionProps> = ({
     ${variant === 'outline' ? 'border opacity-90 hover:opacity-100' : ''}
   `;
 
+  const handleSignIn = async (provider: "google" | "github") => {
+    console.log("Signing in with provider:", provider);
+    signIn(provider, { callbackUrl: DEFAULT_LOGIN_REDIRECT });
+  };
+
   return (
     <Button
       variant={variant === 'default' ? 'default' : 'outline'}
-      onClick={onClick}
+      onClick={() => handleSignIn(provider)}
       className={`${baseClasses} ${className}`}
     >
       <Image 

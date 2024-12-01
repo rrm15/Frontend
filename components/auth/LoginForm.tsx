@@ -1,10 +1,10 @@
 "use client";
-import React, { useState, useTransition } from "react";
+import React, { useState, useTransition, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import { signIn } from "next-auth/react";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Form, FormField, FormItem, FormLabel, FormControl, FormMessage } from "@/components/ui/form";
@@ -16,10 +16,11 @@ import { FormError } from "../form/FormError";
 import { FormWarning } from "../form/FormWarning";
 import { FormSuccess } from "../form/FormSuccess";
 import { login } from "@/actions/login";
-
 import { LoginSchema } from "@/schemas";
 
 export const LoginForm: React.FC = () => {
+    const router = useRouter();
+    const searchParams = useSearchParams();
     const [isLoading, setIsLoading] = useState(false);
     const [isPending, startTransition] = useTransition();
     const [feedback, setFeedback] = useState<{
@@ -27,7 +28,24 @@ export const LoginForm: React.FC = () => {
       message: string | null;
     }>({ type: "success", message: null });
     const [showPassword, setShowPassword] = useState(false);
-    const router = useRouter();
+
+    // Map of OAuth errors to user-friendly messages
+    const oauthErrorMessages: { [key: string]: string } = {
+      OAuthAccountNotLinked: "Email is used by another authentication method.",
+      OAuthSignInError: "There was an issue logging in with the provided credentials.",
+      CredentialsSignInError: "The credentials you provided were not valid.",
+    };
+
+    useEffect(() => {
+      const error = searchParams.get('error');
+      if (error) {
+        const errorMessage = oauthErrorMessages[error] || "An unexpected error occurred during login.";
+        setFeedback({ 
+          type: "error", 
+          message: errorMessage 
+        });
+      }
+    }, [searchParams]);
 
     type LoginSchemaType = z.infer<typeof LoginSchema>;
 
@@ -56,22 +74,6 @@ export const LoginForm: React.FC = () => {
         setIsLoading(false);
       });
     }
-
-    const handleGoogleSignIn = async () => {
-      try {
-        await signIn("google", { callbackUrl: "/dashboard" });
-      } catch (error) {
-        setFeedback({ type: "error", message: "Google sign-in failed" });
-      }
-    };
-
-    const handleGitHubSignIn = async () => {
-      try {
-        await signIn("github", { callbackUrl: "/dashboard" });
-      } catch (error) {
-        setFeedback({ type: "error", message: "GitHub sign-in failed" });
-      }
-    };
 
     return (
       <AuthCard title="Login" description="Login to your account to continue">
@@ -109,15 +111,18 @@ export const LoginForm: React.FC = () => {
                 />
               )}
             />
-            {/* Feedback Section */}
-            {feedback.message && feedback.type === "error" && (
-              <FormError message={feedback.message} />
-            )}
+            {/* Other Feedback Section */}
             {feedback.message && feedback.type === "warning" && (
               <FormWarning message={feedback.message} />
             )}
             {feedback.message && feedback.type === "success" && (
               <FormSuccess message={feedback.message} />
+            )}
+            {/* Error Handling */}
+            {feedback.message && feedback.type === "error" && (
+              <div className="mb-4">
+                <FormError message={feedback.message} />
+              </div>
             )}
             <Button
               type="submit"
@@ -139,8 +144,8 @@ export const LoginForm: React.FC = () => {
         </div>
 
         <div className="space-y-2">
-          <SignInOption provider="google" onClick={handleGoogleSignIn} />
-          <SignInOption provider="github" onClick={handleGitHubSignIn} />
+          <SignInOption provider="google" />
+          <SignInOption provider="github" />
         </div>
 
         <div className="mt-4 text-center text-sm">

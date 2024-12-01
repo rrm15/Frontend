@@ -17,7 +17,7 @@ export const login = async (values: LoginSchemaType) => {
     if (!validatedFields.success) {
       console.error("Validation failed:", validatedFields.error);
       return {
-        error: "Invalid credentials",
+        error: "The credentials you provided were not valid.",
       };
     }
   
@@ -34,7 +34,7 @@ export const login = async (values: LoginSchemaType) => {
       console.log("Sign in result:", result);
   
       return { 
-        success: "Login successful!", 
+        success: "The credentials you provided were not valid.", 
         redirect: DEFAULT_LOGIN_REDIRECT 
       };
     }
@@ -44,7 +44,7 @@ export const login = async (values: LoginSchemaType) => {
         switch(error.type) {
           case "CredentialsSignin":
             return {
-              error: "Invalid credentials!",
+              error: "The credentials you provided were not valid.",
             };
           default:
             return {
