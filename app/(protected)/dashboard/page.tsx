@@ -12,11 +12,15 @@ import { SideBarHeader } from "@/components/sidebar/SidebarHeader";
 export default async function DashboardPage() {
 
   const session = await auth();
-  
+  let heading = "Hello, Parvathi";
+  if (session?.user) {
+    heading = "Hello, " + session.user.name;
+  }
+
   return (
     <SidebarShell>
       <SideBarHeader 
-        heading="Hello, Parvathi"
+        heading={heading}
         text="Welcome to your Wemace dashboard"
       />  
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
