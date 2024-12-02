@@ -36,6 +36,8 @@ export const LoginForm: React.FC = () => {
       CredentialsSignInError: "The credentials you provided were not valid.",
     };
 
+    const callbackUrl = searchParams.get('callbackUrl');
+
     useEffect(() => {
       const error = searchParams.get('error');
       if (error) {
@@ -61,7 +63,7 @@ export const LoginForm: React.FC = () => {
       setFeedback({ type: "warning", message: "Validating your credentials..." });
       setIsLoading(true);
       startTransition(() => {
-        login(values).then((result) => {
+        login(values, callbackUrl).then((result) => {
           if (result.error) {
             setFeedback({ type: "error", message: result.error });
           } else {

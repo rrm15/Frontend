@@ -14,7 +14,7 @@ import {sendVerificationEmail} from "@/lib/mail";
 
 type LoginSchemaType = z.infer<typeof LoginSchema>;
 
-export const login = async (values: LoginSchemaType) => {
+export const login = async (values: LoginSchemaType, callbackUrl?: string | null) => {
 
     const validatedFields = LoginSchema.safeParse(values);
   
@@ -53,7 +53,7 @@ export const login = async (values: LoginSchemaType) => {
   
       return { 
         success: "Authenticated, Login successful!",
-        redirect: DEFAULT_LOGIN_REDIRECT 
+        redirect: callbackUrl || DEFAULT_LOGIN_REDIRECT
       };
     }
     catch(error) {

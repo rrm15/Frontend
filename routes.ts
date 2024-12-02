@@ -37,7 +37,3 @@ export const apiAuthPrefix = "/api/auth";
  * This will be used if no redirect path is provided.
  */
 export const DEFAULT_LOGIN_REDIRECT = "/dashboard";
-
-// export const WEBSITE_LINK= "http://localhost:3000";
-
-export const WEBSITE_LINK = "https://wemace.vercel.app";
