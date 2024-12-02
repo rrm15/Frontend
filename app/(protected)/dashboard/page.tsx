@@ -10,7 +10,6 @@ import { SidebarShell } from "@/components/sidebar/SidebarShell";
 import { SideBarHeader } from "@/components/sidebar/SidebarHeader";
 
 export default async function DashboardPage() {
-
   const session = await auth();
   let heading = "Hello, Parvathi";
   if (session?.user) {

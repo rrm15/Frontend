@@ -8,14 +8,14 @@ export const newVerification = async (token: string) => {
 
     if (!exsisitingToken) {
         return {
-            error: "Token is invalid or expired.",
+            error: "Token is invalid, use new Link.",
         };
     };
     const hasExpired = new Date(exsisitingToken.expiresAt) < new Date();
 
     if (hasExpired) {
         return {
-            error: "Token is invalid or expired.",
+            error: "Token have expired, reset again.",
         };
     }
 

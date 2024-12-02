@@ -68,7 +68,7 @@ const NewVerificationFormContent = () => {
 
 export const NewVerificationForm = () => {
   return (
-    <Suspense fallback={<div>Loading...</div>}>
+    <Suspense fallback={<BeatLoader color="#8A2BE2" />}>
       <NewVerificationFormContent />
     </Suspense>
   );

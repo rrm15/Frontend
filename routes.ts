@@ -17,6 +17,8 @@ export const authRoutes = [
   "/auth/login",
   "/auth/signup",
   "/auth/error",
+  "/auth/reset-password",
+  "/auth/new-password",
 ];
 
 export const protectedRoutes = [
@@ -36,6 +38,6 @@ export const apiAuthPrefix = "/api/auth";
  */
 export const DEFAULT_LOGIN_REDIRECT = "/dashboard";
 
-export const TEST_WEBSITE_LINK = "http://localhost:3000";
+// export const WEBSITE_LINK= "http://localhost:3000";
 
-export const PROD_WENSTE_LINK = "https://wemace.vercel.app";
+export const WEBSITE_LINK = "https://wemace.vercel.app";

@@ -111,6 +111,12 @@ export const LoginForm: React.FC = () => {
                 />
               )}
             />
+            <div className="text-left">
+              <Link href="/auth/reset-password" className="text-sm text-primary hover:underline">
+                Forgot Password?
+              </Link>
+            </div>
+
             {/* Other Feedback Section */}
             {feedback.message && feedback.type === "warning" && (
               <FormWarning message={feedback.message} />

@@ -1,20 +1,37 @@
 import { ThemeToggle } from "@/components/theme/theme-toggle";
-import { Button } from "../ui/button";
-import Link from "next/link";
+import Image from "next/image";
+import { auth } from "@/auth";
+import { EditUserName } from "../profile/EditUserName";
 
 interface SideBarHeaderProps {
   heading: string;
   text?: string;
 }
 
-export function SideBarHeader({ heading, text }: SideBarHeaderProps) {
+export async function SideBarHeader({ heading, text }: SideBarHeaderProps) {
+  const session = await auth();
+  const profileImage = session?.user?.image || "/profile.png";
+  const userName = session?.user?.name || "User";
+
   return (
     <div className="flex items-center justify-between px-2 mb-6">
       <div className="grid gap-1">
-        <h1 className="text-3xl font-bold tracking-wide text-primary">{heading}</h1>
+        <EditUserName 
+          initialValue={userName} 
+          className="text-3xl font-bold tracking-wide text-primary"
+        />
         {text && <p className="text-muted-foreground">{text}</p>}
       </div>
-      <ThemeToggle />
+      <div className="flex items-center space-x-4">
+        <ThemeToggle />
+        <Image 
+          src={profileImage} 
+          alt="Profile" 
+          width={40} 
+          height={40} 
+          className="rounded-full object-cover" 
+        />
+      </div>
     </div>
   );
 }
