@@ -1,7 +1,7 @@
 import { Resend } from "resend";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
-const domain = process.env.NEXT_PUBLIC_WEBSITE_DOMAIN;
+const domain = process.env.NEXT_PUBLIC_WEBSITE_DOMAIN || "https://www.wemace.com";
 
 export const sendVerificationEmail = async (email: string, token: string) => {
 
