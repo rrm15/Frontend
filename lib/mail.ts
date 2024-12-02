@@ -8,7 +8,7 @@ export const sendVerificationEmail = async (email: string, token: string) => {
     const confirmLink = `${domain}/auth/new-verification?token=${token}`;
 
     await resend.emails.send({
-        from: "onboarding@resend.dev",
+        from: "mail@wemace.com",
         to: email,
         subject: "Verify Your Wemace Account",
         html: createEmailTemplate(
@@ -25,7 +25,7 @@ export const sendPasswordResetEmail = async (email: string, token: string) => {
     const resetLink = `${domain}/auth/new-password?token=${token}`;
 
     await resend.emails.send({
-        from: "onboarding@resend.dev",
+        from: "mail@wemace.com",
         to: email,
         subject: "Reset Your Wemace Password",
         html: createEmailTemplate(
