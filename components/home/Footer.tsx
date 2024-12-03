@@ -1,4 +1,4 @@
-import { Facebook, Twitter, Instagram, Linkedin } from 'lucide-react';
+import { Twitter, Instagram, Linkedin } from 'lucide-react';
 import { useState, useEffect } from 'react';
 
 export default function Footer() {
@@ -16,20 +16,20 @@ export default function Footer() {
   };
 
   return (
-    <footer className="bg-gray-900 text-white py-20 px-4">
+    <footer className="bg-background text-foreground py-20 px-4">
       <div className="max-w-7xl mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12">
           <div className="lg:col-span-2">
             <h3 className="text-2xl font-bold mb-4 gradient-text">Wemace</h3>
-            <p className="text-gray-400 mb-6">
+            <p className="text-muted-foreground mb-6">
               Empowering Self Help Groups through blockchain technology and decentralized finance.
             </p>
             <div className="flex space-x-4">
-              {[Facebook, Twitter, Instagram, Linkedin].map((Icon, i) => (
+              {[Twitter, Instagram, Linkedin].map((Icon, i) => (
                 <a 
                   key={i} 
                   href="#" 
-                  className="hover:text-[#FF1493] transition-colors"
+                  className="text-muted-foreground hover:text-primary transition-colors"
                 >
                   <Icon className="w-6 h-6" />
                 </a>
@@ -44,7 +44,7 @@ export default function Footer() {
                   <li key={item}>
                     <a 
                       href="#" 
-                      className="text-gray-400 hover:text-white transition-colors"
+                      className="text-muted-foreground hover:text-foreground transition-colors"
                     >
                       {item}
                     </a>
@@ -54,7 +54,7 @@ export default function Footer() {
             </div>
           ))}
         </div>
-        <div className="mt-12 pt-8 border-t border-gray-800 text-center text-gray-400">
+        <div className="mt-12 pt-8 border-t border-border text-center text-muted-foreground">
           <p suppressHydrationWarning>
             &copy; {currentYear} Wemace. All rights reserved.
           </p>
