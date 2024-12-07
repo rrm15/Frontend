@@ -1,27 +1,13 @@
-import { auth } from "@/auth";
-
 import { OverviewStats } from "@/components/dashboard/OverviewStats";
 import { TransactionChart } from "@/components/dashboard/TransactionChart";
 import { GovernmentSchemes } from "@/components/dashboard/GovernmentSchemes";
 import { QuickActions } from "@/components/dashboard/QuickActions";
 import { NotificationsCenter } from "@/components/dashboard/NotificationsCenter";
 import { ProfileStatus } from "@/components/dashboard/ProfileStatus";
-import { SidebarShell } from "@/components/sidebar/SidebarShell";
-import { SideBarHeader } from "@/components/sidebar/SidebarHeader";
 
-export default async function DashboardPage() {
-  const session = await auth();
-  let heading = "Hello, Parvathi";
-  if (session?.user) {
-    heading = "Hello, " + session.user.name;
-  }
-
+export default function DashboardPage() {
   return (
-    <SidebarShell>
-      <SideBarHeader 
-        heading={heading}
-        text="Welcome to your Wemace dashboard"
-      />  
+    <div className="p-6 md:p-8 lg:p-10">
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
         <OverviewStats />
       </div>
@@ -34,6 +20,6 @@ export default async function DashboardPage() {
         <NotificationsCenter />
         <ProfileStatus />
       </div>
-    </SidebarShell>
+    </div>
   );
 }

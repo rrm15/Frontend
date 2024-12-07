@@ -14,7 +14,7 @@ export async function SideBarHeader({ heading, text }: SideBarHeaderProps) {
   const userName = session?.user?.name || "User";
 
   return (
-    <div className="flex items-center justify-between px-2 mb-6">
+    <div className="flex items-center justify-between px-4 mb-6">
       <div className="grid gap-1">
         <EditUserName 
           initialValue={userName} 
