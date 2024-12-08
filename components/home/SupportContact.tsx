@@ -85,7 +85,9 @@ const SupportContact: React.FC = () => {
       <div className="max-w-7xl mx-auto">
       <div className="text-center mb-16">
         <h1 className="text-5xl md:text-7xl font-bold mb-4">
-        <span className="gradient-text">Get in Touch</span>
+        <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 gradient-text-white dark:gradient-text-dark">
+          Get in <span className="gradient-text">Touch</span>
+        </h2>
         </h1>
         <p className="text-xl md:text-2xl mb-8 text-gray-600 dark:text-gray-300">
         We&apos;d love to hear from you. Drop us a line!
