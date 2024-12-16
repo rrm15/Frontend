@@ -24,24 +24,6 @@ const mockCommunities: Community[] = [
     avatarUrl: '/community-avatars/tech-innovators.png',
     isAdmin: false,
     activityLevel: 'High'
-  },
-  {
-    id: '2',
-    name: 'Local Entrepreneurs',
-    description: 'Supporting small businesses and startups',
-    memberCount: 456,
-    avatarUrl: '/community-avatars/entrepreneurs.png',
-    isAdmin: true,
-    activityLevel: 'Medium'
-  },
-  {
-    id: '3',
-    name: 'Community Gardeners',
-    description: 'Urban gardening and sustainability group',
-    memberCount: 203,
-    avatarUrl: '/community-avatars/gardeners.png',
-    isAdmin: false,
-    activityLevel: 'Low'
   }
 ];
 
