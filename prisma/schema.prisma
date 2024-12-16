@@ -10,8 +10,6 @@ generator client {
   provider = "prisma-client-js"
 }
 
-
-
 model Account {
   id                 String  @id @default(cuid())
   userId             String  @map("user_id")
@@ -46,6 +44,7 @@ model User {
   password      String?
   role          UserRole  @default(USER)
   accounts      Account[]
+  communities   Community[]
  
   @@map("users")
 }
@@ -66,4 +65,29 @@ model PasswordResetToken {
   expiresAt DateTime
  
  @@unique([email, token])
+}
+
+enum MemberRole {
+  MEMBER
+  ELDER
+  CO_LEADER
+  LEADER
+}
+
+model Community {
+  id          String      @id @default(cuid())
+  name        String      @unique
+  description String
+  logo        String?
+  members     CommunityMember[]
+  createdBy   User        @relation(fields: [creatorId], references: [id])
+  creatorId   String
+}
+
+model CommunityMember {
+  id           String      @id @default(cuid())
+  email        String
+  role         MemberRole  @default(MEMBER)
+  community    Community   @relation(fields: [communityId], references: [id], onDelete: Cascade)
+  communityId  String
 }
