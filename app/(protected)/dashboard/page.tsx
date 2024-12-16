@@ -20,6 +20,12 @@ export default function DashboardPage() {
         <NotificationsCenter />
         <ProfileStatus />
       </div>
+      <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 mt-6">
+        <QuickActions />
+        <NotificationsCenter />
+        <ProfileStatus />
+      </div>
+
     </div>
   );
 }
