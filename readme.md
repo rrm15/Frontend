@@ -10,13 +10,9 @@
 
 <h2>Project Screenshots:</h2>
 
-<img src="https://res.cloudinary.com/dvude7m7p/image/upload/v1734417866/el32mjzcoqqexkkala2r.png" alt="project-screenshot" width="360" height="200/">
+<img src="https://res.cloudinary.com/dvude7m7p/image/upload/v1734417866/el32mjzcoqqexkkala2r.png" alt="project-screenshot" width="360" height="200/"><img src="https://res.cloudinary.com/dvude7m7p/image/upload/v1734419136/k8jjipqqcwigbaqbjamj.jpg" alt="project-screenshot" width="360" height="200/">
 
-<img src="https://res.cloudinary.com/dvude7m7p/image/upload/v1734419136/k8jjipqqcwigbaqbjamj.jpg" alt="project-screenshot" width="360" height="200/">
-
-<img src="https://res.cloudinary.com/dvude7m7p/image/upload/v1734419502/Wemace/kxmw22gke09b2iqukzoh.jpg" alt="project-screenshot" width="360" height="200/">
-
-<img src="https://res.cloudinary.com/dvude7m7p/image/upload/v1734419502/Wemace/muzli2wwn1vqybho2hyu.jpg" alt="project-screenshot" width="360" height="200/">
+<img src="https://res.cloudinary.com/dvude7m7p/image/upload/v1734419502/Wemace/kxmw22gke09b2iqukzoh.jpg" alt="project-screenshot" width="360" height="200/"><img src="https://res.cloudinary.com/dvude7m7p/image/upload/v1734419502/Wemace/muzli2wwn1vqybho2hyu.jpg" alt="project-screenshot" width="360" height="200/">
 
 <img src="https://res.cloudinary.com/dvude7m7p/image/upload/v1734419503/Wemace/s7cqwvyjedm848r4hazk.jpg" alt="project-screenshot" width="360" height="200/">
 
