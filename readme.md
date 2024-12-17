@@ -1,7 +1,24 @@
-vv
-# Wemace Frontend
+<h1 align="center" id="title">Wemace</h1>
 
-Welcome to the Wemace Frontend project! This repository contains the frontend code for the Wemace application.
+<p align="center"><img src="https://res.cloudinary.com/dvude7m7p/image/upload/v1734417472/ddxxglmqn9dh8lgf2hp4.webp" alt="project-image"></p>
+
+<p id="description">The 'Wemace - Empowering SHGs through Blockchain' A decentralized platform empowering Self Help Groups in India through blockchain technology AI and DeFi.</p>
+
+<h2>🚀 Demo</h2>
+
+[https://wemace.vercel.app/](https://wemace.vercel.app/)
+
+<h2>Project Screenshots:</h2>
+
+<img src="https://res.cloudinary.com/dvude7m7p/image/upload/v1734417866/el32mjzcoqqexkkala2r.png" alt="project-screenshot" width="360" height="400/">
+
+<img src="https://res.cloudinary.com/dvude7m7p/image/upload/v1734419136/k8jjipqqcwigbaqbjamj.jpg" alt="project-screenshot" width="360" height="400/">
+
+<img src="https://res.cloudinary.com/dvude7m7p/image/upload/v1734419502/Wemace/kxmw22gke09b2iqukzoh.jpg" alt="project-screenshot" width="360" height="400/">
+
+<img src="https://res.cloudinary.com/dvude7m7p/image/upload/v1734419502/Wemace/muzli2wwn1vqybho2hyu.jpg" alt="project-screenshot" width="360" height="400/">
+
+<img src="https://res.cloudinary.com/dvude7m7p/image/upload/v1734419503/Wemace/s7cqwvyjedm848r4hazk.jpg" alt="project-screenshot" width="360" height="400/">
 
 ## Table of Contents
 
@@ -12,16 +29,21 @@ Welcome to the Wemace Frontend project! This repository contains the frontend co
 - [Contributing](#contributing)
 - [License](#license)
 
-## Introduction
 
-Wemace is a web application designed to provide users with an intuitive and seamless experience. The frontend is built using modern web technologies to ensure high performance and responsiveness.
+  
+<h2>🧐 Features</h2>
 
-## Features
+Here're some of the project's best features:
 
-- User-friendly interface
-- Responsive design
-- Fast loading times
-- Easy navigation
+*   Smart Contract Integration
+*   Decentralized Security
+*   DeFi Solutions
+*   Community Governance
+*   Transparent Fund management
+*   Secure Digital Identity
+*   Cross-SHG Collaboration
+*   Community-Driven Governance
+
 
 ## Installation
 
@@ -68,6 +90,19 @@ Change the Link in Mail.ts to the production link
 ## Contributing
 
 We welcome contributions to the Wemace Frontend project! If you have any ideas, suggestions, or bug reports, please open an issue or submit a pull request. Make sure to follow our [contributing guidelines](CONTRIBUTING.md).
+
+
+  
+<h2>💻 Built with</h2>
+
+Technologies used in the project:
+
+*   Nextjs
+*   Solidity
+*   metamask
+*   shadcn
+*   GunDB
+
 
 ## License
 
