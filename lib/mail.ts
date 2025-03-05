@@ -14,7 +14,7 @@ export const sendVerificationEmail = async (email: string, token: string) => {
         html: createEmailTemplate(
             "Verify Your Email",
             "Thank you for signing up with Wemace! To complete your registration, please verify your email address by clicking the button below.",
-            "Verify Email",
+            "Please Verify Email",
             confirmLink
         ),
     });
